@@ -1,7 +1,10 @@
 import type { AWS } from '@serverless/typescript'
+import * as dotenv from 'dotenv'
 
 import hello from '@functions/hello'
 import listProducts from '@functions/listProducts'
+
+dotenv.config()
 
 const serverlessConfiguration: AWS = {
   service: 'default-serverless-jest-swagger-prisma',

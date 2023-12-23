@@ -26,7 +26,7 @@ describe('Testing endpoint ListProducts', () => {
     const { statusCode, body } = await main(event, {} as any, () => {})
     const { data } = JSON.parse(body)
 
-    expect(statusCode).toBe(201)
+    expect(statusCode).toBe(200)
     expect(JSON.stringify(data)).toEqual(JSON.stringify(productsList))
   })
 })

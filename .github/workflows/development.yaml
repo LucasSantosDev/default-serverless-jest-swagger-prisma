@@ -17,6 +17,8 @@ jobs:
           node-version: '18'
       - name: Installing packages
         run: yarn install
+      - name: Running tests
+        run: yarn yarn test:coverage
       - name: Deploy Application
         uses: serverless/github-action@v3.1
         with:

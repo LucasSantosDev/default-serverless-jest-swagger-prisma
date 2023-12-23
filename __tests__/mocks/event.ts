@@ -1,0 +1,15 @@
+export default {
+  headers: {} as any,
+  multiValueHeaders: {} as any,
+  httpMethod: {} as any,
+  isBase64Encoded: false,
+  path: {} as any,
+  pathParameters: {} as any,
+  queryStringParameters: {} as any,
+  multiValueQueryStringParameters: {} as any,
+  stageVariables: {} as any,
+  requestContext: {} as any,
+  resource: {} as any,
+  rawBody: {} as any,
+  body: {} as any,
+}

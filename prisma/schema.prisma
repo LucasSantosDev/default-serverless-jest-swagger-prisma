@@ -1,0 +1,16 @@
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "rhel-openssl-1.0.x", "debian-openssl-1.1.x", "darwin"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Products {
+    id        Int       @id @default(autoincrement())
+    name      String?   @db.VarChar(30)
+    createdAt DateTime  @default(now())
+    updatedAt DateTime?
+}

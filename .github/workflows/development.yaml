@@ -1,0 +1,26 @@
+name: Deploy development
+
+on:
+  workflow_dispatch:
+
+jobs:
+  DeployApplication:
+    name: Process default to deploy
+    runs-on: ubuntu-latest
+    # if ${{ github.ref == 'refs/heads/develop' }}
+    steps:
+      - name: Enabling checkout in repository
+        uses: actions/checkout@v3
+      - name: Using nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Installing packages
+        run: yarn install
+      - name: Deploy Application
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy --stage dev --region us-east-1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

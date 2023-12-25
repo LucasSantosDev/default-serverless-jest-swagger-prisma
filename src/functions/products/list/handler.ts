@@ -6,7 +6,7 @@ const listProducts = async () => {
   const productsRepository = new Products()
   const allProducts = await productsRepository.read()
 
-  return formatJSONResponse({ data: allProducts })
+  return formatJSONResponse(200, { data: allProducts })
 }
 
 export const main = middyfy(listProducts)

@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { main } from '@functions/listProducts/handler'
+import { main } from '@functions/products/list/handler'
 import event from './mocks/event'
 import { prisma } from '@config/prisma'
 import { PrismaPromise, Products } from '@prisma/client'

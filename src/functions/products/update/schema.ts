@@ -6,4 +6,11 @@ export default {
     },
     required: ['name'],
   },
+  pathParameters: {
+    type: 'object',
+    properties: {
+      id: { type: 'number' },
+    },
+    required: ['id'],
+  },
 } as const

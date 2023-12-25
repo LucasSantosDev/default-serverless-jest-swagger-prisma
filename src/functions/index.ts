@@ -1,2 +1,6 @@
 export { default as hello } from './hello'
-export { default as listProducts } from './listProducts'
+export { default as listProducts } from './products/list'
+export { default as createProduct } from './products/create'
+export { default as updateProduct } from './products/update'
+export { default as readOneProduct } from './products/readOne'
+export { default as deleteProduct } from './products/delete'

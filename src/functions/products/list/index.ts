@@ -10,7 +10,7 @@ export default {
         summary: 'Listar todos os produtos',
         description:
           'Endpoint responsável por listar todos os produtos sem paginação',
-        swaggerTags: ['ProductList'],
+        swaggerTags: ['Products'],
         responseData: {
           200: {
             bodyType: 'ProductsListResponse',

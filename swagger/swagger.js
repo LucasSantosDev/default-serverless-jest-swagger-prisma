@@ -46,7 +46,7 @@
         "summary": "Listar todos os produtos",
         "description": "Endpoint responsável por listar todos os produtos sem paginação",
         "tags": [
-          "ProductList"
+          "Products"
         ],
         "operationId": "listProducts.get.products",
         "consumes": [
@@ -61,6 +61,137 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/ProductsListResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar produto",
+        "description": "Endpoint responsável por criar produto",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "createProduct.post.products",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProductCreateResponse"
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Listar dados do produto",
+        "description": "Endpoint responsável por listar dados do produto",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "readOneProduct.get.products/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProductReadOneResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover o produto",
+        "description": "Endpoint responsável por remover o produto",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "deleteProduct.delete.products/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar produto",
+        "description": "Endpoint responsável por atualizar o produto",
+        "tags": [
+          "Products"
+        ],
+        "operationId": "updateProduct.put.products/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProductUpdateRequest"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProductUpdateResponse"
             }
           }
         }
@@ -108,11 +239,21 @@
               "name": {
                 "title": "ProductsListResponse.data.[].name",
                 "type": "string"
+              },
+              "createdAt": {
+                "title": "ProductsListResponse.data.[].createdAt",
+                "type": "string"
+              },
+              "updatedAt": {
+                "title": "ProductsListResponse.data.[].updatedAt",
+                "type": "string"
               }
             },
             "required": [
               "id",
-              "name"
+              "name",
+              "createdAt",
+              "updatedAt"
             ],
             "additionalProperties": false,
             "title": "ProductsListResponse.data.[]",
@@ -127,6 +268,146 @@
       ],
       "additionalProperties": false,
       "title": "ProductsListResponse",
+      "type": "object"
+    },
+    "ProductReadOneResponse": {
+      "properties": {
+        "data": {
+          "properties": {
+            "id": {
+              "title": "ProductReadOneResponse.data.id",
+              "type": "number"
+            },
+            "name": {
+              "title": "ProductReadOneResponse.data.name",
+              "type": "string"
+            },
+            "createdAt": {
+              "title": "ProductReadOneResponse.data.createdAt",
+              "type": "string"
+            },
+            "updatedAt": {
+              "title": "ProductReadOneResponse.data.updatedAt",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "title": "ProductReadOneResponse.data",
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "additionalProperties": false,
+      "title": "ProductReadOneResponse",
+      "type": "object"
+    },
+    "ProductCreateRequest": {
+      "properties": {
+        "name": {
+          "title": "ProductCreateRequest.name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "title": "ProductCreateRequest",
+      "type": "object"
+    },
+    "ProductCreateResponse": {
+      "properties": {
+        "data": {
+          "properties": {
+            "id": {
+              "title": "ProductCreateResponse.data.id",
+              "type": "number"
+            },
+            "name": {
+              "title": "ProductCreateResponse.data.name",
+              "type": "string"
+            },
+            "createdAt": {
+              "title": "ProductCreateResponse.data.createdAt",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "createdAt"
+          ],
+          "additionalProperties": false,
+          "title": "ProductCreateResponse.data",
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "additionalProperties": false,
+      "title": "ProductCreateResponse",
+      "type": "object"
+    },
+    "ProductUpdateRequest": {
+      "properties": {
+        "name": {
+          "title": "ProductUpdateRequest.name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "title": "ProductUpdateRequest",
+      "type": "object"
+    },
+    "ProductUpdateResponse": {
+      "properties": {
+        "data": {
+          "properties": {
+            "id": {
+              "title": "ProductUpdateResponse.data.id",
+              "type": "number"
+            },
+            "name": {
+              "title": "ProductUpdateResponse.data.name",
+              "type": "string"
+            },
+            "createdAt": {
+              "title": "ProductUpdateResponse.data.createdAt",
+              "type": "string"
+            },
+            "updatedAt": {
+              "title": "ProductUpdateResponse.data.updatedAt",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false,
+          "title": "ProductUpdateResponse.data",
+          "type": "object"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "additionalProperties": false,
+      "title": "ProductUpdateResponse",
       "type": "object"
     }
   },

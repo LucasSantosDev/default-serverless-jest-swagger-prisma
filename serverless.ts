@@ -2,7 +2,11 @@ import type { AWS } from '@serverless/typescript'
 import * as dotenv from 'dotenv'
 
 import hello from '@functions/hello'
-import listProducts from '@functions/listProducts'
+import listProducts from '@functions/products/list'
+import createProduct from '@functions/products/create'
+import updateProduct from '@functions/products/update'
+import readOneProduct from '@functions/products/readOne'
+import deleteProduct from '@functions/products/delete'
 
 dotenv.config()
 
@@ -31,7 +35,14 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, listProducts },
+  functions: {
+    hello,
+    listProducts,
+    createProduct,
+    readOneProduct,
+    deleteProduct,
+    updateProduct,
+  },
   package: {
     individually: true,
     patterns: [
